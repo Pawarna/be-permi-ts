@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import 'dotenv/config';
 import cors from 'cors';
+import path from 'node:path';
 
 import routes from './routes'
 
@@ -15,6 +16,8 @@ app.use(express.json()); // Agar bisa baca body JSON
 app.get('/', (req: Request, res: Response) => {
   res.send('Backend Permikomnas is Running!');
 });
+
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')))
 
 // Contoh route API
 app.use('/api', routes)
